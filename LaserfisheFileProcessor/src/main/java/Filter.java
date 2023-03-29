@@ -14,9 +14,12 @@ import java.util.Scanner;
 public class Filter {
     
     String key;
+    File entry;
     
-    public Filter (String k){
-        key = k;  
+    
+    public Filter (String k, File f){
+        key = k;
+        entry = f;
     }
     
     public String[] content() {
