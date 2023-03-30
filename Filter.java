@@ -4,24 +4,30 @@ import java.util.List;
 
 public class Filter {
 
-    public static List<String> nameFilter(ArrayList<String> entries, String key) {
-        ArrayList<String> filteredList = new ArrayList<String>();
+    File[] entries;
 
-        for (int i = 0; i < entries.size(); i++) {
-            if (entries.contains(key)) {
-                filteredList.add(entries.get(i));
+    public Filter(File f) {
+        entries = f.listFiles();
+    }
+
+    public List<File> nameFilter(String key) {
+        ArrayList<File> filteredList = new ArrayList<File>();
+
+        for (File entry : entries) {
+            if (entry.toString().contains(key)) {
+                filteredList.add(entry);
             }
         }
 
         return filteredList;
     }
 
-    public static List<File> lengthFilter(List<File> entries, long length, String operator) {
+    public List<File> lengthFilter(long length, String operator) {
         List<File> files = new ArrayList<>();
 
-        for (int i = 0; i < entries.size(); i++) {
-            if (entries.get(i).isFile() && checkLength(entries.get(i), length, operator)) {
-                files.add(entries.get(i));
+        for (File entry : entries) {
+            if (entry.isFile() && checkLength(entry, length, operator)) {
+                files.add(entry);
             }
         }
 
@@ -46,9 +52,5 @@ public class Filter {
             default:
                 return false;
         }
-    }
-
-    public static void main(String[] args) {
-
     }
 }
