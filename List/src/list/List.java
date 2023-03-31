@@ -13,12 +13,12 @@ import java.util.ArrayList;
  */
 public class List {
 
-    void ListOf(File[] a, int Max) {
+    void ListOf(File[] entries, int Max) {
         //an arraylist of files are created to save the entries that are directories
         ArrayList<File> isDirectory = new ArrayList();
         //this for loop checks if it is a directory and adds it to the list
-        for (int j = 0; j < a.length; j++) {
-            if (a[j].isDirectory() == true) {
+        for (int j = 0; j < entries.length; j++) {
+            if (entries[j].isDirectory() == true) {
                 isDirectory.add(a[j]);
             }
         }
