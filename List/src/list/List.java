@@ -19,7 +19,7 @@ public class List {
         //this for loop checks if it is a directory and adds it to the list
         for (int j = 0; j < entries.length; j++) {
             if (entries[j].isDirectory() == true) {
-                isDirectory.add(a[j]);
+                isDirectory.add(entries[j]);
             }
         }
         //this for loop is to print the max amount of entries 
