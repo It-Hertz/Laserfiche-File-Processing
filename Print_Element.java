@@ -11,7 +11,7 @@ import java.util.List;
 public class Print_Element {
 
     public static void printProperties(String directoryPath){
-        File directory = new File(directoryPath); //checks if item is a folder or a file
+        File directory = new File(directoryPath);       //checks if item is a folder or a file
         if (!directory.isDirectory()){
             System.out.println(directoryPath + " is not a directory.");
         }
@@ -26,7 +26,7 @@ public class Print_Element {
                 long length = file.length();
                 String absolutePath = file.getAbsolutePath();
                 
-                if(type.equals("local")){       //printing out local file properties
+                if(type.equals("local")){               //printing out local file properties
                     System.out.print("LOCAL File Name: " + name);
                     System.out.println("   ||   Size: " + length);
                     System.out.println("Path: " + absolutePath + "\n~~~~~\n");
