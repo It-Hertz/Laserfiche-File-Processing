@@ -10,7 +10,7 @@ import java.util.List;
  */
 public class Print_Element {
 
-    public static void printProperties(String directoryPath){
+    public static void printProperties(String directoryPath) throws IOException {
         File directory = new File(directoryPath);       //checks if item is a folder or a file
         if (!directory.isDirectory()){
             System.out.println(directoryPath + " is not a directory.");
@@ -41,7 +41,7 @@ public class Print_Element {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         String directoryPath = "C:/example";            //to test with only local files (temporary)
         printProperties(directoryPath);                 //replace the path with a local path to test
     }
