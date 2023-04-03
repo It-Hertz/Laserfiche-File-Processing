@@ -2,6 +2,7 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
  *
  * @author Dista
@@ -9,6 +10,12 @@ import java.util.List;
 
 public class main {
     public static void main(String[] args) {
+        
+        Remote dnld = new Remote();
+        //dnld.info();
+        //dnld.downloadDir(18);
+        //dnld.downloadEntry(28, "NamesList2", null);
+        dnld.close();
         
         String key = "TORONTO";
         key = key.toLowerCase();
