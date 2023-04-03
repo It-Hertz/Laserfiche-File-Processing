@@ -12,21 +12,24 @@ import java.util.List;
 public class SplitProcess 
 {
     
-    public static List<File> splitEntries(List<File> entries, int lines) //returns list of file 
-    {
+    private final File file;
+
+    public SplitProcess(File file) {
+        this.file = file;
+    }
+    
+   public List<File> splitEntries(int lines) 
+   {
         List<File> outputSplit = new ArrayList<>(); //creates a list for output files
-        for (File entry : entries) //iterates each file in the list
-	{
-            if (entry.isFile()) //checks if is a file 
-            {
-                try (BufferedReader reader = new BufferedReader(new FileReader(entry))) //file is read
+        if (file.isFile()) {
+                try (BufferedReader reader = new BufferedReader(new FileReader(file)))  //file is read
 		{
-                    String filename = entry.getName(); //current input file
+                    String filename = file.getName(); //current input file
                     int numOfPart = 1; //output file number
                     String newLine = reader.readLine();//current line read from input
                     while (newLine != null) //while theres another line
                     {
-                        File partFile = new File(entry.getParentFile(), fileNameParts(filename, numOfPart)); //creates output file
+                        File partFile = new File(file.getParentFile(), fileNameParts(filename, numOfPart)); //creates output file
                         try (FileWriter writer = new FileWriter(partFile)) //writes current line to output file
 			{
                             for (int i = 0; i < lines && newLine != null; i++) 
@@ -34,23 +37,24 @@ public class SplitProcess
                                 writer.write(newLine + "\n");
                                 newLine = reader.readLine(); //current line read from input
                             }
-                            outputSplit.add(partFile);
-                            numOfPart++;
+                            outputSplit.add(partFile); //holds output files
+                            numOfPart++; //counts number of files output
                         }
                     }
                     
                 } 
                 catch (IOException e) 
 		{
+                    e.printStackTrace();
                 }
             }
-        }
+        
         
         return outputSplit;
     }
     
-    private static String fileNameParts(String filename, int numOfPart) 
-	{
+    private static String fileNameParts(String filename, int numOfPart)  
+    {
         int dotIndex = filename.lastIndexOf(".");
         if (dotIndex == -1) 
 	{
