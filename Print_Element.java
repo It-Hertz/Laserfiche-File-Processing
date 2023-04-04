@@ -1,6 +1,8 @@
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Path;
+import java.nio.file.FileStore;
+import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.List;
@@ -20,14 +22,16 @@ public class Print_Element {
         File[] files = directory.listFiles();           //checks if file is empty
         if (files == null){System.out.println(directoryPath + " is empty.");}
         
+        FileStore file_Location = Files.getFileStore(Paths.get(directoryPath));
+        
         for (File file : files){
             if (file.isFile()){                         //obtains basic file properties
-                String type = file.getName();
+                String type = file_Location.type();
                 String name = file.getName();
                 long length = file.length();
                 String absolutePath = file.getAbsolutePath();
                 
-                if(type.equals("local")){               //printing out local file properties
+                if(type.equals("NTFS")){               //printing out local file properties
                     System.out.print("LOCAL File Name: " + name);
                     System.out.println("   ||   Size: " + length);
                     System.out.println("Path: " + absolutePath + "\n~~~~~\n");
