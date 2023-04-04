@@ -19,7 +19,7 @@ public class Print_Element {
             System.out.println(directoryPath + " is not a directory.");
         }
         
-        File[] files = directory.listFiles();           //checks if file is empty
+        File[] files = directory.listFiles();           //checks if directory is empty
         if (files == null){System.out.println(directoryPath + " is empty.");}
         
         FileStore file_Location = Files.getFileStore(Paths.get(directoryPath));
